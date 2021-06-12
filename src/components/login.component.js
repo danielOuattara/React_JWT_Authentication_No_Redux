@@ -42,7 +42,7 @@ export default class login extends Component {
         });
     }
 
-    handleLogin (event) {
+    handleLogin(event) {
         event.preventDefault();
         this.setState ({
             message: '',
@@ -56,17 +56,15 @@ export default class login extends Component {
             .then(() => {
                 this.props.history.push('/profile');
                 window.location.reload();
-            },
-            err => {
+            })
+            .catch( err => {
                 const resMessage = (err.res && err.res.data && err.res.data.message) ||
-                                    err.message ||
-                                    err.toString();
-
-                                    this.setState({
-                                        loading: false,
-                                        message: resMessage
-                                    });
-            });
+                                    err.message ||  err.toString();
+                this.setState({
+                    loading: false,
+                    message: resMessage
+                });
+            })
         
         } else {
             this.setState({loading: false})
@@ -83,8 +81,8 @@ export default class login extends Component {
                         className="profile-img-card"
                     />
 
-                    <Form   onSubmit = {this.handleLogin}
-                            ref= {c => { this.form = c }} >
+                    <Form  onSubmit = {this.handleLogin}
+                           ref= {c => { this.form = c }} >
 
                         <div className="form-group">
                             <label htmlFor="username">Username</label>
