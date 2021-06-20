@@ -46,17 +46,72 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navber navbar-expand navbar-dark bg-dark">
-
+        <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand"> React</Link>
 
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to={('/home')}>Home</Link>
+              <Link to={"/home"} className="nav-link">Home</Link>
             </li>
+
+            {showModeratorBoard && 
+            (<li className="nav-item">
+                <Link to={"/mod"} className="nav-link"> Moderator Board</Link>
+            </li>
+            )}
+
+            {showAdminBoard && 
+            (<li className="nav-item">
+                <Link to={"/admin"} className="nav-link"> Admin Board</Link>
+            </li>
+            )}
+
+            {currentUser && 
+            (<li className="nav-item">
+                <Link to={"/user"} className="nav-link"> User Board</Link>
+            </li>
+            )}
           </div>
 
+          {currentUser ? 
+            ( <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={"/profile"} className="nav-link"> {currentUser.username}</Link>
+                </li>
+                <li className="nav-item">
+                  <a href="/login" className="nav-link" onClick={this.logout}> Logout</a>
+                </li>
+              </div>
+            )  
+            : 
+            (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={"/login"} className="nav-link">Login</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/register"} className="nav-link">Register</Link>
+                </li>
+              </div>
+            )  
+          }
         </nav>
+
+        <div className="container mt-3">
+          <Switch>
+            <Route exact path={["/", "/home"]} component={Home}/>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/register" component={Register}/>
+            <Route exact path="/profile" component={Profile}/>
+            <Route path="/user" component={BoardUser}/>
+            <Route path="/mod" component={BoardModerator}/>
+            <Route path="/admin" component={BoardAdmin}/>
+          </Switch>
+        </div>
+
+
+
+
       </div>
     )
 

@@ -4,8 +4,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-
-import AuthService from "../services/auth.service";
+import AuthService from './../services/auth.service';
 
 const required = value => {
     if(!value) {
@@ -28,7 +27,7 @@ const email = value => {
 };
 
 const vusername = value => {
-    if (value.length > 3  || value.length > 30) {
+    if (value.length < 3  || value.length > 30) {
         return (
             <div className="alert alert-danger" role="alert">
                 username must be between 3 and 20 characters.
@@ -170,7 +169,6 @@ export default class Register extends Component {
             </div>
         )
     }
-
 }
 
 

@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Form  from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import AuthService from '../services/auth.service';
+import AuthService from './../services/auth.service';
 
 const required = value => {
     if (!value) {
@@ -15,12 +15,12 @@ const required = value => {
     }
 };
 
-export default class login extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props);
         this.handleLogin = this.handleLogin.bind(this);
         this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangePassword = this.onChangePassword.biind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
 
         this.state =  {
             username: '',
@@ -50,7 +50,6 @@ export default class login extends Component {
         })
 
         this.form.validateAll();
-
         if (this.checkBtn.context._erors.length === 0) {
             AuthService.login(this.state.username, this.state.password)
             .then(() => {
@@ -73,7 +72,7 @@ export default class login extends Component {
 
     render() {
         return(
-            <div className="col-mde-12">
+            <div className="col-md-12">
                 <div className="card card-container">
                     <img
                         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -82,7 +81,7 @@ export default class login extends Component {
                     />
 
                     <Form  onSubmit = {this.handleLogin}
-                           ref= {c => { this.form = c }} >
+                           ref = {c => { this.form = c }} >
 
                         <div className="form-group">
                             <label htmlFor="username">Username</label>
@@ -107,9 +106,7 @@ export default class login extends Component {
                         <div className="form-group">
                             <button className="btn btn-primary btn-block"
                                     disabled={this.state.loading}>
-                                {this.state.loading && ( 
-                                    <span className="spinner-border spinner-border-sm"></span>
-                                )}
+                                {this.state.loading && ( <span className="spinner-border spinner-border-sm"></span> ) }
                                 <span>Login</span>
                             </button>
                         </div>
