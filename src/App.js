@@ -75,23 +75,29 @@ class App extends Component {
 
           {currentUser ? 
             ( <div className="navbar-nav ml-auto">
+
                 <li className="nav-item">
                   <Link to={"/profile"} className="nav-link"> {currentUser.username}</Link>
                 </li>
+
                 <li className="nav-item">
                   <a href="/login" className="nav-link" onClick={this.logout}> Logout</a>
                 </li>
+
               </div>
             )  
             : 
             (
               <div className="navbar-nav ml-auto">
+
                 <li className="nav-item">
                   <Link to={"/login"} className="nav-link">Login</Link>
                 </li>
+
                 <li className="nav-item">
                   <Link to={"/register"} className="nav-link">Register</Link>
                 </li>
+
               </div>
             )  
           }
