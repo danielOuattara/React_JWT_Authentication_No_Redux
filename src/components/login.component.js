@@ -4,12 +4,13 @@ import Form  from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from './../services/auth.service';
+// import { isEmail } from "validator";
 
-const required = value => {
+const required = (value) => {
     if (!value) {
         return (
             <div className="alert alert-danger" role="alert">
-                this field is required !
+                Sorry... this field is required !
             </div>
         );
     }
@@ -23,34 +24,30 @@ export default class Login extends Component {
         this.onChangePassword = this.onChangePassword.bind(this);
 
         this.state =  {
-            username: '',
-            password: '',
-            loading: '',
-            message:'',
+            username: "",
+            password: "",
+            loading: "",
+            message: "",
         };
     }
 
     onChangeUsername(event) {
-        this.setState({
-            username: event.target.value
-        });
+        this.setState({ username: event.target.value });
     }
 
     onChangePassword(event) {
-        this.setState({
-            password: event.target.value
-        });
+        this.setState({ password: event.target.value });
     }
 
     handleLogin(event) {
         event.preventDefault();
         this.setState ({
-            message: '',
+            message: "",
             loading: true
-        })
+        });
 
         this.form.validateAll();
-        if (this.checkBtn.context._erors.length === 0) {
+        if (this.checkBtn.context._errors.length === 0) {
             AuthService.login(this.state.username, this.state.password)
             .then(() => {
                 this.props.history.push('/profile');
@@ -58,10 +55,10 @@ export default class Login extends Component {
             })
             .catch( err => {
                 const resMessage = (err.res && err.res.data && err.res.data.message) ||
-                                    err.message ||  err.toString();
+                                    err.message || err.toString();
                 this.setState({
                     loading: false,
-                    message: resMessage
+                    message: resMessage,
                 });
             })
         
@@ -80,24 +77,26 @@ export default class Login extends Component {
                         className="profile-img-card"
                     />
 
-                    <Form  onSubmit = {this.handleLogin}
-                           ref = {c => { this.form = c }} >
+                    <Form onSubmit = {this.handleLogin}
+                           ref = {c => { this.form = c } } >
 
                         <div className="form-group">
-                            <label htmlFor="username">Username</label>
+                            <label htmlFor="username">Username : </label>
                             <Input type='text'
                                    className="form-control"
                                    name="username"
+                                   placeholder="Enter Username"
                                    value={this.state.username}
                                    onChange={this.onChangeUsername}
                                    validations={[required]} />
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Password : </label>
                             <Input type='password'
                                    className="form-control"
                                    name="password"
+                                   placeholder="Enter Password"
                                    value={this.state.password}
                                    onChange={this.onChangePassword}
                                    validations={[required]} />

@@ -47,7 +47,8 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand"> React</Link>
+
+          <Link to={"/"} className="navbar-brand"> React &lt;3 </Link>
 
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -114,16 +115,9 @@ class App extends Component {
             <Route path="/admin" component={BoardAdmin}/>
           </Switch>
         </div>
-
-
-
-
       </div>
     )
-
-
   }
-    
 }
 
 export default App;

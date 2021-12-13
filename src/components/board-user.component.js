@@ -11,11 +11,11 @@ export default class BoardUser extends Component {
     componentDidMount() {
         UserService.getUserBoard()
         .then( res => {
-            this.setState({ cotent: res.data});
+            this.setState({ content: res.data});
         })
         .catch( err =>{
             this.setState({
-                content:  (err.response && err.response.data) || err.message ||  err.toString()
+                content: (err.response && err.response.data) || err.message || err.toString()
             })
         })
     }

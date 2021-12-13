@@ -11,7 +11,7 @@ export default class BoardAdmin extends Component {
     componentDidMount() {
         UserService.getAdminBoard()
         .then( res => {
-            this.setState({ cotent: res.data});
+            this.setState({ content: res.data});
         })
         .catch( err =>{
             this.setState({
